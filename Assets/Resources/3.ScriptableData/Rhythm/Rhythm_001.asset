@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d94be565a598b146a8255afa9bf7139, type: 3}
   m_Name: Rhythm_001
   m_EditorClassIdentifier: 
-  _bpm: 100
+  _bpm: 200
   _rhythmNotes:
+  - note: 2
+  - note: 2
   - note: 2
   - note: 2
   - note: 2

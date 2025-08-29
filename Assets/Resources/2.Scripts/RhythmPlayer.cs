@@ -15,29 +15,39 @@ public class RhythmPlayer : MonoBehaviour
         StartCoroutine(PlayRhythm());
     }
 
-    private void ActiveBlock(RhythmNote rhythmNote)
+    private void ActiveBlock(float bps)
     {
         for(int i = 0; i < _rhythmBlocks.Length; i++)
         {
-            
             if(_rhythmBlocks[i].gameObject.activeSelf == false)
             {
-
+                _rhythmBlocks[i].gameObject.SetActive(true);
+                _rhythmBlocks[i].Init(bps);
+                break;
             }
         }
     }
 
     IEnumerator PlayRhythm()
     {
-        while(_rhythmIndex < _rhythm.RhythmNotes.Count)
-        {
-            Debug.Log(Time.time);
-            float beatDuration = 60f / _rhythm.Bpm;
-            float bps = beatDuration * _rhythm.RhythmNotes[_rhythmIndex].Beats;
-            float nextNote = Time.time + bps;
-            // 다음박 예비박 시작하기 - 스케일 bps 속도 동아 증가
+        float beatDuration = 60f / _rhythm.Bpm;
+        float bps = beatDuration * _rhythm.RhythmNotes[_rhythmIndex].Beats;
+        float nextNote = Time.time + bps;
+        ActiveBlock(bps);
 
-            //yield return new WaitForSeconds(bps);
+        while (Time.time < nextNote)
+        {
+            yield return null;
+        }
+
+        _rhythmIndex++;
+
+        while (_rhythmIndex < _rhythm.RhythmNotes.Count)
+        {
+            bps = beatDuration * _rhythm.RhythmNotes[_rhythmIndex].Beats;
+            nextNote = Time.time + bps;
+            ActiveBlock(bps);
+
             while(Time.time < nextNote)
             {
                 yield return null;
