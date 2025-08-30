@@ -50,9 +50,8 @@ public class RhythmBlock : MonoBehaviour
     {
         if (other.gameObject.layer != _layer) return;
 
-        _particle?.Play();
-        // 오디오 매니저로 오디오 실행
-
+        EffectManager.Instance.PlayOnShot(transform.position);
+        AudioManager.Instance.PlayOnShot(_audioClip);
         gameObject.SetActive(false);
     }
 
