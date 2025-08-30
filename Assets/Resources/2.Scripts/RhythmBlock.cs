@@ -12,7 +12,7 @@ public class RhythmBlock : MonoBehaviour
     [SerializeField] float _goodTimeDuration = 0.3f;
     Vector3 _baseScale = Vector3.zero;
     Vector3 _targetScale = Vector3.one;
-    private RhythmBlockState state = RhythmBlockState.Bad;
+    [SerializeField] private RhythmBlockState state = RhythmBlockState.Bad;
     private float _lerpTimer = 0;
     private float _lerpTime = 0;
     private float _goodTime = 0;
