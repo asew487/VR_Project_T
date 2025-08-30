@@ -10,15 +10,20 @@ public class RhythmBlock : MonoBehaviour
 {
     [SerializeField] GameObject _rhythmBlock;
     [SerializeField] float _goodTimeDuration = 0.3f;
-    Vector3 _baseScale = Vector3.zero;
-    Vector3 _targetScale = Vector3.one;
+    [SerializeField] ParticleSystem _particle;
+    [SerializeField] AudioClip _audioClip;
+    [SerializeField] LayerMask _layer;
     [SerializeField] private RhythmBlockState state = RhythmBlockState.Bad;
+
+    private Vector3 _baseScale = Vector3.zero;
+    private Vector3 _targetScale = Vector3.one;
     private float _lerpTimer = 0;
     private float _lerpTime = 0;
     private float _goodTime = 0;
 
     void Start()
     {
+
     }
 
     void Update()
@@ -40,6 +45,15 @@ public class RhythmBlock : MonoBehaviour
                 }
                 break;
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer != _layer) return;
+
+        _particle?.Play();
+        // 오디오 매니저로 오디오 실행
+
+        gameObject.SetActive(false);
     }
 
     public void Init(float bps)
