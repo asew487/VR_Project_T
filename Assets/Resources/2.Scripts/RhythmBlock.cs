@@ -36,7 +36,11 @@ public class RhythmBlock : MonoBehaviour
                 _lerpTimer += Time.deltaTime;
                 float t = Mathf.Clamp01(_lerpTimer / _lerpTime);
                 _rhythmBlock.transform.localScale = Vector3.Lerp(_baseScale, _targetScale, t);
-                if (t >= 1) state = RhythmBlockState.Good;
+                if (t >= 1) 
+                {
+                    Debug.Log($"{Time.time} | {_lerpTimer}");
+                    state = RhythmBlockState.Good; 
+                }
                 break;
             case RhythmBlockState.Good:
                 if(Time.time >  _goodTime)
