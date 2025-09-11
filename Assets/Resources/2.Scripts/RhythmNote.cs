@@ -13,7 +13,9 @@ public enum Note
 public class RhythmNote
 {
     [SerializeField] Note note;
+    [SerializeField] bool isRest;
 
+    public bool IsRest => isRest;
     public float Beats => note switch
     {
         Note.Whole => 4f,

@@ -4,9 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Rhythm", menuName = "Scriptable/Rhythm")]
 public class Rhythm : ScriptableObject
 {
-    [SerializeField] float _bpm;
-    [SerializeField] List<RhythmNote> _rhythmNotes;
+    [SerializeField] float bpm;
+    [SerializeField] List<RhythmNote> redRhythmNotes;
+    [SerializeField] List<RhythmNote> blueRhythmNotes;
 
-    public float Bpm => _bpm;
-    public List<RhythmNote> RhythmNotes => _rhythmNotes;
+    public float Bpm => bpm;
+    public List<RhythmNote> RedRhythmNotes => redRhythmNotes;
+    public List<RhythmNote> BlueRhythmNotes => blueRhythmNotes;
 }

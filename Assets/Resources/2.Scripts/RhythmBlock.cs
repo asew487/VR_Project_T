@@ -1,4 +1,8 @@
+using Meta.WitAi;
 using UnityEngine;
+using UnityEngine.Pool;
+using DG.Tweening;
+using System.Collections;
 
 public enum RhythmBlockState
 {
@@ -8,18 +12,22 @@ public enum RhythmBlockState
 
 public class RhythmBlock : MonoBehaviour
 {
-    [SerializeField] GameObject _rhythmBlock;
-    [SerializeField] float _goodTimeDuration = 0.3f;
-    [SerializeField] ParticleSystem _particle;
-    [SerializeField] AudioClip _audioClip;
-    [SerializeField] LayerMask _layer;
+    [SerializeField] GameObject rhythmBlock;
+    [SerializeField] float moveSpeed;
+    [SerializeField] float goodTimeDuration = 0.3f;
+    [SerializeField] ParticleSystem particle;
+    [SerializeField] AudioClip audioClip;
+    [SerializeField] LayerMask layer;
     [SerializeField] private RhythmBlockState state = RhythmBlockState.Bad;
 
-    private Vector3 _baseScale = Vector3.zero;
-    private Vector3 _targetScale = Vector3.one;
-    private float _lerpTimer = 0;
-    private float _lerpTime = 0;
-    private float _goodTime = 0;
+    private Vector3 baseScale = Vector3.zero;
+    private Vector3 targetScale = Vector3.one;
+    private float lerpTimer = 0;
+    private float lerpTime = 0;
+    private float goodTime = 0;
+    private Vector3[] track;
+    private int trackIndex;
+    private IObjectPool<RhythmBlock> rhythmPool;
 
     void Start()
     {
@@ -30,41 +38,78 @@ public class RhythmBlock : MonoBehaviour
     {
         if (gameObject.activeSelf == false) return;
 
-        switch(state)
-        {
-            case RhythmBlockState.Bad:
-                _lerpTimer += Time.deltaTime;
-                float t = Mathf.Clamp01(_lerpTimer / _lerpTime);
-                _rhythmBlock.transform.localScale = Vector3.Lerp(_baseScale, _targetScale, t);
-                if (t >= 1) 
-                {
-                    Debug.Log($"{Time.time} | {_lerpTimer}");
-                    state = RhythmBlockState.Good; 
-                }
-                break;
-            case RhythmBlockState.Good:
-                if(Time.time >  _goodTime)
-                {
-                    gameObject.SetActive(false);
-                }
-                break;
-        }
+        //switch(state)
+        //{
+        //    case RhythmBlockState.Bad:
+        //        lerpTimer += Time.deltaTime;
+        //        float t = Mathf.Clamp01(lerpTimer / lerpTime);
+        //        //_rhythmBlock.transform.localScale = Vector3.Lerp(_baseScale, _targetScale, t);
+        //        if (t >= 1) 
+        //        {
+        //            //Debug.Log($"{Time.time} | {_lerpTimer}");
+        //            state = RhythmBlockState.Good; 
+        //        }
+        //        break;
+        //    case RhythmBlockState.Good:
+        //        if(Time.time >  goodTime)
+        //        {
+        //            //gameObject.SetActive(false);
+        //            rhythmPool.Release(this);
+        //        }
+        //        break;
+        //}
+
+        
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != _layer) return;
+        if (other.gameObject.layer != layer) return;
 
         EffectManager.Instance.PlayOnShot(transform.position);
-        AudioManager.Instance.PlayOnShot(_audioClip);
-        gameObject.SetActive(false);
+        AudioManager.Instance.PlayOnShot(audioClip);
+        //gameObject.SetActive(false);
+        rhythmPool.Release(this);
+    }
+
+    public void SetPool(IObjectPool<RhythmBlock> pool)
+    {
+        rhythmPool = pool;
+    }
+
+    public void SetTrack(Vector3[] track)
+    {
+        this.track = track;
+        gameObject.transform.position = track[0];
     }
 
     public void Init(float bps)
     {
-        _lerpTime = bps;
-        _lerpTimer = 0;
-        _goodTime = Time.time + bps + _goodTimeDuration;
+        lerpTime = bps;
+        lerpTimer = 0;
+        goodTime = Time.time + bps + goodTimeDuration;
         state = RhythmBlockState.Bad;
-        _rhythmBlock.transform.localScale = _baseScale;
+        StartCoroutine(MoveToTrack());
+    }
+
+    IEnumerator MoveToTrack()
+    {
+        for (trackIndex = 0; trackIndex + 1 < track.Length; trackIndex++)
+        {
+            float distance = Vector3.Distance(track[trackIndex], track[trackIndex + 1]);
+            float remainingDistance = distance;
+
+            while (remainingDistance > 0)
+            {
+                transform.position = Vector3.Lerp(track[trackIndex], track[trackIndex + 1], 1 - (remainingDistance / distance));
+                remainingDistance -= moveSpeed * Time.deltaTime;
+                yield return null;
+            }
+
+            yield return null;
+        }
+        
+
+        yield return null;
     }
 }
