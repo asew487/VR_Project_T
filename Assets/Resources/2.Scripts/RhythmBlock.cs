@@ -7,7 +7,8 @@ using System.Collections;
 public enum RhythmBlockState
 {
     Bad,
-    Good
+    Good,
+    Perfact
 }
 
 public class RhythmBlock : MonoBehaviour
@@ -29,6 +30,12 @@ public class RhythmBlock : MonoBehaviour
     private int trackIndex;
     private IObjectPool<RhythmBlock> rhythmPool;
 
+    public RhythmBlockState State
+    {
+        get { return state; }
+        set { state = value; }
+    }
+
     void Start()
     {
 
@@ -36,40 +43,7 @@ public class RhythmBlock : MonoBehaviour
 
     void Update()
     {
-        if (gameObject.activeSelf == false) return;
-
-        //switch(state)
-        //{
-        //    case RhythmBlockState.Bad:
-        //        lerpTimer += Time.deltaTime;
-        //        float t = Mathf.Clamp01(lerpTimer / lerpTime);
-        //        //_rhythmBlock.transform.localScale = Vector3.Lerp(_baseScale, _targetScale, t);
-        //        if (t >= 1) 
-        //        {
-        //            //Debug.Log($"{Time.time} | {_lerpTimer}");
-        //            state = RhythmBlockState.Good; 
-        //        }
-        //        break;
-        //    case RhythmBlockState.Good:
-        //        if(Time.time >  goodTime)
-        //        {
-        //            //gameObject.SetActive(false);
-        //            rhythmPool.Release(this);
-        //        }
-        //        break;
-        //}
-
         
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer != layer) return;
-
-        EffectManager.Instance.PlayOnShot(transform.position);
-        AudioManager.Instance.PlayOnShot(audioClip);
-        //gameObject.SetActive(false);
-        rhythmPool.Release(this);
     }
 
     public void SetPool(IObjectPool<RhythmBlock> pool)
@@ -92,6 +66,11 @@ public class RhythmBlock : MonoBehaviour
         StartCoroutine(MoveToTrack());
     }
 
+    public void Release()
+    {
+        rhythmPool.Release(this);
+    }
+
     IEnumerator MoveToTrack()
     {
         for (trackIndex = 0; trackIndex + 1 < track.Length; trackIndex++)
@@ -108,8 +87,8 @@ public class RhythmBlock : MonoBehaviour
 
             yield return null;
         }
-        
 
+        rhythmPool.Release(this);
         yield return null;
     }
 }

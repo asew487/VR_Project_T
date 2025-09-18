@@ -5,10 +5,10 @@ using UnityEngine;
 public class Rhythm : ScriptableObject
 {
     [SerializeField] float bpm;
-    [SerializeField] List<RhythmNote> redRhythmNotes;
-    [SerializeField] List<RhythmNote> blueRhythmNotes;
+    [SerializeField] Track[] redTrackRhythmNotes = new Track[2];
+    [SerializeField] Track[] blueTrackRhythmNotes = new Track[2];
 
     public float Bpm => bpm;
-    public List<RhythmNote> RedRhythmNotes => redRhythmNotes;
-    public List<RhythmNote> BlueRhythmNotes => blueRhythmNotes;
+    public Track[] RedTrackRhythmNotes => redTrackRhythmNotes;
+    public Track[] BlueTrackRhythmNotes => blueTrackRhythmNotes;
 }

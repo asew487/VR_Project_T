@@ -13,29 +13,313 @@ MonoBehaviour:
   m_Name: Rhythm_001
   m_EditorClassIdentifier: 
   bpm: 80
-  redRhythmNotes: []
-  blueRhythmNotes:
-  - note: 2
-    isRest: 1
-  - note: 2
-    isRest: 1
-  - note: 2
-    isRest: 0
-  - note: 2
-    isRest: 0
-  - note: 2
-    isRest: 1
-  - note: 2
-    isRest: 1
-  - note: 2
-    isRest: 0
-  - note: 2
-    isRest: 0
-  - note: 2
-    isRest: 1
-  - note: 2
-    isRest: 1
-  - note: 2
-    isRest: 0
-  - note: 2
-    isRest: 0
+  redTrackRhythmNotes:
+  - rhythmNoteTrack:
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 1
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 0
+      isRest: 1
+  - rhythmNoteTrack:
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 2
+      isRest: 1
+    - note: 1
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 0
+      isRest: 0
+  blueTrackRhythmNotes:
+  - rhythmNoteTrack:
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 1
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 0
+      isRest: 0
+  - rhythmNoteTrack:
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 0
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 2
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 2
+      isRest: 0
+    - note: 1
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 3
+      isRest: 1
+    - note: 3
+      isRest: 0
+    - note: 0
+      isRest: 1

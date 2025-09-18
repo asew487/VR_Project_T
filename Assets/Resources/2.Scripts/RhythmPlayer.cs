@@ -9,13 +9,22 @@ public class RhythmPlayer : MonoBehaviour
     [SerializeField] Rhythm rhythm;
     [SerializeField] RhythmBlock redRhythmBlcok;
     [SerializeField] RhythmBlock blueRhythmBlock;
+    [SerializeField] Monster monster;
     [SerializeField] TrackController trackCtrl;
 
-    private int rhythmIndex = 0;
-    private float beatTime = 0;
-    private float beatTimer = 0;
+    private float badValue = 0;
+    private float perfactValue = 0;
+    private int noteCount = 0;
+    private int endTrack = 0;
     private bool isPlaying = false;
+    private Player playerSetup;
     private IObjectPool<RhythmBlock> rhythmPool;
+
+    public int EndTrack
+    {
+        get { return endTrack; }
+        set { endTrack = value; }
+    }
 
     private void Awake()
     {
@@ -28,8 +37,38 @@ public class RhythmPlayer : MonoBehaviour
 
     private void Start()
     {
+        playerSetup = FindAnyObjectByType<Player>();
+
+        for (int i = 0; i < rhythm.BlueTrackRhythmNotes.Length; i++)
+        {
+            for (int j = 0; j < rhythm.BlueTrackRhythmNotes[i].RhythmNoteTrack.Count; j++)
+            {
+                if (rhythm.BlueTrackRhythmNotes[i].RhythmNoteTrack[j].IsRest == false)
+                {
+                    noteCount++;
+                }
+            }
+        }
+
+        for (int i = 0; i < rhythm.RedTrackRhythmNotes.Length; i++)
+        {
+            for (int j = 0; j < rhythm.RedTrackRhythmNotes[i].RhythmNoteTrack.Count; j++)
+            {
+                if (rhythm.RedTrackRhythmNotes[i].RhythmNoteTrack[j].IsRest == false)
+                {
+                    noteCount++;
+                }
+            }
+        }
+
+        UIManager.Instance.PerfactValue = 100 / noteCount;
+        UIManager.Instance.BadValue = UIManager.Instance.PerfactValue / 2;
+
         //StartCoroutine(PlayRhythm(rhythm.RedRhythmNotes));
-        StartCoroutine(PlayRhythm(rhythm.BlueRhythmNotes, TrackType.Blue));
+        StartCoroutine(PlayRhythm(rhythm.RedTrackRhythmNotes[0].RhythmNoteTrack, TrackType.Red));
+        StartCoroutine(PlayRhythm(rhythm.RedTrackRhythmNotes[1].RhythmNoteTrack, TrackType.Red, 1));
+        StartCoroutine(PlayRhythm(rhythm.BlueTrackRhythmNotes[0].RhythmNoteTrack, TrackType.Blue));
+        StartCoroutine(PlayRhythm(rhythm.BlueTrackRhythmNotes[1].RhythmNoteTrack, TrackType.Blue, 1));
     }
 
     private void ActiveBlock(float bps, TrackType Type, int index)
@@ -65,14 +104,31 @@ public class RhythmPlayer : MonoBehaviour
     private void ReleaseRhythmBlock(RhythmBlock block)
     {
         block.gameObject.SetActive(false);
+        //SFX, VFXÃß°¡
     }
 
-    IEnumerator PlayRhythm(List<RhythmNote> rhythmNotes, TrackType type)
+    public void PlayRhythm(Rhythm rhythm)
     {
+        playerSetup.Active(true);
+
+        StartCoroutine(PlayRhythm(rhythm.RedTrackRhythmNotes[0].RhythmNoteTrack, TrackType.Red));
+        StartCoroutine(PlayRhythm(rhythm.RedTrackRhythmNotes[1].RhythmNoteTrack, TrackType.Red, 1));
+        StartCoroutine(PlayRhythm(rhythm.BlueTrackRhythmNotes[0].RhythmNoteTrack, TrackType.Blue));
+        StartCoroutine(PlayRhythm(rhythm.BlueTrackRhythmNotes[1].RhythmNoteTrack, TrackType.Blue, 1));
+    }
+
+    public void MonsterSpawnStart()
+    {
+        StartCoroutine(MonsterSpawn());
+    }
+
+    IEnumerator PlayRhythm(List<RhythmNote> rhythmNotes, TrackType type, int trackIndex = 0)
+    {
+        int rhythmIndex = 0;
         float beatDuration = 60f / rhythm.Bpm;
         float bps = beatDuration * rhythmNotes[rhythmIndex].Beats;
         float nextNote = Time.time + bps;
-        if (rhythmNotes[rhythmIndex].IsRest == false) { ActiveBlock(bps, type, 0); }
+        if (rhythmNotes[rhythmIndex].IsRest == false) { ActiveBlock(bps, type, trackIndex); }
         
 
         while (Time.time < nextNote)
@@ -86,7 +142,7 @@ public class RhythmPlayer : MonoBehaviour
         {
             bps = beatDuration * rhythmNotes[rhythmIndex].Beats;
             nextNote = Time.time + bps;
-            if (rhythmNotes[rhythmIndex].IsRest == false) { ActiveBlock(bps, type, 0); }
+            if (rhythmNotes[rhythmIndex].IsRest == false) { ActiveBlock(bps, type, trackIndex); }
 
             while (Time.time < nextNote)
             {
@@ -95,5 +151,26 @@ public class RhythmPlayer : MonoBehaviour
 
             rhythmIndex++;
         }
+
+        endTrack++;
+    }
+
+    IEnumerator MonsterSpawn()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            yield return new WaitForSeconds(2f);
+
+            Monster mons = Instantiate(monster).GetComponent<Monster>();
+            int trackType = Random.Range(0, 2);
+            int trackIndex = Random.Range(0, 2);
+            mons.gameObject.SetActive(true);
+            mons.Init(trackCtrl.GetTrack((TrackType)trackType, trackIndex));
+        }
+
+        yield return new WaitForSeconds(10f);
+
+        GameManager.Instance.IsEventEnd = true;
+        yield break;
     }
 }

@@ -5,13 +5,19 @@ TagManager:
   serializedVersion: 3
   tags:
   - Anchor
+  - BlueBlock
+  - TimingChecker
+  - RhythmBlock
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Overlay UI
   - Water
   - UI
+  - RhythmBlock
+  - TimingChecker
+  - Monster
   - 
   - 
   - 
@@ -34,10 +40,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - OVROverlayCanvas Rendering
   m_SortingLayers:
   - name: Default
     uniqueID: 0
