@@ -12,7 +12,6 @@ public class FadeController : MonoBehaviour
     {
         if (!panel)
         {
-            Debug.LogError("Panel 오브젝트를 찾을 수 없습니다.");
             throw new MissingComponentException();
         }
 
@@ -35,9 +34,7 @@ public class FadeController : MonoBehaviour
     public void FadeOut(float time, Action action = null)
     {
         panel.SetActive(true); // Panel 활성화
-        Debug.Log("FadeCanvasController_ Fade Out 시작");
         StartCoroutine(CoFadeOut(time, action));
-        Debug.Log("FadeCanvasController_ Fade Out 끝");
     }
 
     IEnumerator CoFadeIn(float time)
@@ -52,10 +49,8 @@ public class FadeController : MonoBehaviour
             panel.GetComponent<CanvasRenderer>().SetAlpha(Mathf.Lerp(1f, 0f, elapsedTime / fadedTime));
 
             elapsedTime += Time.deltaTime;
-            Debug.Log("Fade In 중...");
             yield return null;
         }
-        Debug.Log("Fade In 끝");
         panel.SetActive(false); // Panel을 비활성화
         yield break;
     }
@@ -72,11 +67,9 @@ public class FadeController : MonoBehaviour
             panel.GetComponent<CanvasRenderer>().SetAlpha(Mathf.Lerp(0f, 2f, elapsedTime / fadedTime));
 
             elapsedTime += Time.deltaTime;
-            Debug.Log("Fade Out 중...");
             yield return null;
         }
 
-        Debug.Log("Fade Out 끝");
         action?.Invoke(); // 이후에 해야 하는 다른 액션이 있는 경우(null이 아님) 진행한다
         StartCoroutine(CoFadeIn(0.5f));
         yield break;

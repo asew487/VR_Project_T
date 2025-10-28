@@ -129,7 +129,7 @@ public class RhythmPlayer : MonoBehaviour
         float bps = beatDuration * rhythmNotes[rhythmIndex].Beats;
         float nextNote = Time.time + bps;
         if (rhythmNotes[rhythmIndex].IsRest == false) { ActiveBlock(bps, type, trackIndex); }
-        
+        Debug.Log("ActiveBlock : " + bps);
 
         while (Time.time < nextNote)
         {
@@ -143,6 +143,7 @@ public class RhythmPlayer : MonoBehaviour
             bps = beatDuration * rhythmNotes[rhythmIndex].Beats;
             nextNote = Time.time + bps;
             if (rhythmNotes[rhythmIndex].IsRest == false) { ActiveBlock(bps, type, trackIndex); }
+            Debug.Log("ActiveBlock : " + bps);
 
             while (Time.time < nextNote)
             {
@@ -171,6 +172,5 @@ public class RhythmPlayer : MonoBehaviour
         yield return new WaitForSeconds(10f);
 
         GameManager.Instance.IsEventEnd = true;
-        yield break;
     }
 }

@@ -17,6 +17,7 @@ Material:
   m_InvalidKeywords:
   - _BLEND_MODE_ADD
   - _BLEND_MODE_OVERLAY
+  - _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -86,6 +87,7 @@ Material:
     - _QueueOffset: 0
     - _Smoothness: 0.5
     - _Tiling: 1
+    - _XRMotionVectorsPass: 1
     m_Colors:
     - _Dirt_Color: {r: 0.3962264, g: 0.15162015, b: 0.02055892, a: 0}
     - _Emission_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -107,4 +109,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 9
+  version: 10
