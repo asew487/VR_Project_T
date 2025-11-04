@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d94be565a598b146a8255afa9bf7139, type: 3}
-  m_Name: NewRhythm
+  m_Name: Rhythm_01
   m_EditorClassIdentifier: Assembly-CSharp::Rhythm
   bpm: 120
   redTrackRhythmNotes:
@@ -24,12 +24,36 @@ MonoBehaviour:
     - note: 4
       isRest: 0
     - note: 8
+      isRest: 1
+    - note: 8
       isRest: 0
     - note: 8
       isRest: 1
     - note: 8
       isRest: 0
     - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 0
+    - note: 4
+      isRest: 1
+    - note: 16
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 0
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 0
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 0
+    - note: 4
+      isRest: 1
+    - note: 16
       isRest: 1
   - rhythmNoteTrack:
     - note: 4
@@ -39,14 +63,38 @@ MonoBehaviour:
     - note: 4
       isRest: 1
     - note: 4
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 4
+      isRest: 1
+    - note: 16
       isRest: 0
     - note: 8
       isRest: 1
     - note: 8
-      isRest: 0
+      isRest: 1
     - note: 8
       isRest: 1
     - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 4
+      isRest: 1
+    - note: 16
       isRest: 0
   blueTrackRhythmNotes:
   - rhythmNoteTrack:
@@ -57,15 +105,39 @@ MonoBehaviour:
     - note: 4
       isRest: 1
     - note: 4
+      isRest: 1
+    - note: 8
       isRest: 0
     - note: 8
       isRest: 1
     - note: 8
-      isRest: 1
+      isRest: 0
     - note: 8
       isRest: 1
     - note: 8
+      isRest: 0
+    - note: 8
       isRest: 1
+    - note: 4
+      isRest: 1
+    - note: 16
+      isRest: 0
+    - note: 8
+      isRest: 0
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 0
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 0
+    - note: 8
+      isRest: 1
+    - note: 4
+      isRest: 1
+    - note: 16
+      isRest: 0
   - rhythmNoteTrack:
     - note: 4
       isRest: 1
@@ -82,4 +154,28 @@ MonoBehaviour:
     - note: 8
       isRest: 1
     - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 4
+      isRest: 1
+    - note: 16
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 8
+      isRest: 1
+    - note: 4
+      isRest: 1
+    - note: 16
       isRest: 1

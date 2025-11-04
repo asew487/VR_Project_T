@@ -64,6 +64,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -85,6 +87,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -122,11 +125,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161a88215961f8d4ab2953d26e0c61c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rhythmBlock: {fileID: 4699760602070023951}
-  _goodTimeDuration: 0.3
-  _particle: {fileID: 0}
-  _audioClip: {fileID: 8300000, guid: 26cb0265c4305b244ac9f2c9537feab0, type: 3}
-  _layer:
+  rhythmBlock: {fileID: 0}
+  moveSpeed: 5
+  goodTimeDuration: 0.3
+  particle: {fileID: 0}
+  audioClip: {fileID: 0}
+  layer:
     serializedVersion: 2
     m_Bits: 0
   state: 0
@@ -192,6 +196,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -213,6 +219,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0

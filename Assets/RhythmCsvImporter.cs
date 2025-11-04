@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using System.IO;
 using System.Linq;
@@ -8,7 +9,6 @@ using UnityEngine;
 using UnityEditor;
 using Unity.EditorCoroutines.Editor;
 using UnityEngine.Networking;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 public class RhythmCsvImporter : EditorWindow
@@ -155,3 +155,4 @@ public class RhythmCsvImporter : EditorWindow
         EditorUtility.DisplayDialog("Success", $"Rhythm asset created at {assetPath}", "OK");
     }
 }
+#endif
